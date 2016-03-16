@@ -201,6 +201,9 @@ rvMonsterSentry::CheckActions
 ================
 */
 bool rvMonsterSentry::CheckActions ( void ) {
+	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
+		return false;
+	}
 	if ( kamakaziHealth != 0 ) {
 		if ( PerformAction ( &actionBlasterAttack, (checkAction_t)&idAI::CheckAction_RangedAttack, &actionTimerRangedAttack ) ) {
 			return true;

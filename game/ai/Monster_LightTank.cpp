@@ -402,6 +402,9 @@ rvMonsterLightTank::CheckActions
 ================
 */
 bool rvMonsterLightTank::CheckActions ( void ) {
+	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
+		return false;
+	}
 	if ( PerformAction ( &actionFlameThrower, (checkAction_t)&idAI::CheckAction_RangedAttack ) ) {
 		return true;
 	}

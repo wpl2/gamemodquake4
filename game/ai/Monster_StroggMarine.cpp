@@ -391,6 +391,9 @@ rvMonsterStroggMarine::CheckActions
 */
 bool rvMonsterStroggMarine::CheckActions ( void ) {
 
+	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
+		return false;
+	}
 	if ( idAI::CheckActions ( ) ) 
 	{
 		return true;

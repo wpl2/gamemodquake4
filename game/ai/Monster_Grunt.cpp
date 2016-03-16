@@ -140,6 +140,9 @@ rvMonsterGrunt::CheckActions
 ================
 */
 bool rvMonsterGrunt::CheckActions ( void ) {
+	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
+		return false;
+	}
 	// If our health is below the rage threshold then enrage
 	if ( health < rageThreshold ) { 
 		PerformAction ( "Torso_Enrage", 4, true );

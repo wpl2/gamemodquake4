@@ -198,6 +198,9 @@ rvMonsterNetworkGuardian::CheckActions
 ================
 */
 bool rvMonsterNetworkGuardian::CheckActions ( void ) {
+	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
+		return false;
+	}
 	// If not moving, try turning in place
 	if ( !move.fl.moving && gameLocal.time > combat.investigateTime ) 
 	{

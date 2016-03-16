@@ -257,6 +257,9 @@ rvMonsterConvoyGround::Spawn
 ================
 */
 bool rvMonsterConvoyGround::CheckActions ( void ) {
+	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
+		return false;
+	}
 	if ( isOpen ) {
 		if ( move.fl.moving ) {
 /*		

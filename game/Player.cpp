@@ -1080,6 +1080,7 @@ idPlayer::idPlayer() {
 
 	doInitWeapon			= false;
 	noclip					= false;
+	crouchhidden			= false;
 	godmode					= false;
 	undying					= g_forceUndying.GetBool() ? !gameLocal.isMultiplayer : false;
 
@@ -1496,6 +1497,7 @@ void idPlayer::Init( void ) {
 	const char			*value;
 	
 	noclip					= false;
+	crouchhidden			= false;
 	godmode					= false;
 	godmodeDamage			= 0;
 	undying					= g_forceUndying.GetBool() ? !gameLocal.isMultiplayer : false;
@@ -9019,12 +9021,14 @@ void idPlayer::Move( void ) {
 		newEyeOffset = pm_crouchviewheight.GetFloat();
 		powerUpOverlay = invisibilityOverlay; // invisible when crouching
 		powerUpSkin = declManager->FindSkin( spawnArgs.GetString( "skin_invisibility" ), false );
+		crouchhidden = true;
 	} else if ( IsInVehicle ( ) ) {
 		newEyeOffset = 0.0f;
 	} else {
 		newEyeOffset = pm_normalviewheight.GetFloat();
 		powerUpOverlay = NULL; // become visible when standing
 		powerUpSkin = NULL;
+		crouchhidden = false;
 	}
 
 	if ( EyeHeight() != newEyeOffset ) {

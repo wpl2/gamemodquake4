@@ -191,6 +191,9 @@ rvMonsterIronMaiden::CheckActions
 ================
 */
 bool rvMonsterIronMaiden::CheckActions ( void ) {
+	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
+		return false;
+	}
 	// When phased the only available action is phase in
 	if ( phaseTime ) {
 		if ( PerformAction_PhaseIn ( ) ) {

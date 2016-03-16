@@ -266,6 +266,9 @@ rvMonsterHeavyHoverTank::Spawn
 ================
 */
 bool rvMonsterHeavyHoverTank::CheckActions ( void ) {
+	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
+		return false;
+	}
 	if ( weaponStateIdeal != weaponStateCurrent ) {
 		PerformAction ( "Torso_ChangeWeaponState", 4 );
 		return true;

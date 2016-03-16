@@ -1491,6 +1491,10 @@ int idAI::ReactionTo( const idEntity *ent ) {
 		return ATTACK_IGNORE;
 	}
 
+	if ( actor->IsType( idPlayer::GetClassType() ) && static_cast<const idPlayer *>(actor)->crouchhidden ) {
+		return ATTACK_IGNORE; // ignore players hidden by crouch invisibility
+	}
+
 	// actors on different teams will always fight each other
 	if ( actor->team != team ) {
 		if ( actor->fl.notarget ) {
