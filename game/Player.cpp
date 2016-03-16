@@ -9017,10 +9017,14 @@ void idPlayer::Move( void ) {
 		newEyeOffset = pm_deadviewheight.GetFloat();
 	} else if ( physicsObj.IsCrouching() ) {
 		newEyeOffset = pm_crouchviewheight.GetFloat();
+		powerUpOverlay = invisibilityOverlay; // invisible when crouching
+		powerUpSkin = declManager->FindSkin( spawnArgs.GetString( "skin_invisibility" ), false );
 	} else if ( IsInVehicle ( ) ) {
 		newEyeOffset = 0.0f;
 	} else {
 		newEyeOffset = pm_normalviewheight.GetFloat();
+		powerUpOverlay = NULL; // become visible when standing
+		powerUpSkin = NULL;
 	}
 
 	if ( EyeHeight() != newEyeOffset ) {
