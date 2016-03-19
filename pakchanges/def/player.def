@@ -641,15 +641,15 @@ entityDef player_marine
 	"weapon0_toggle"					"0"			// whether selecting weapon twice switches between current and previous weapons
 	"weapon0_flashlight"					"1"
 
-	"def_weapon1"						"weapon_machinegun"
+	"def_weapon1"						"weapon_gauntlet" // default weapon_machinegun
 	"weapon1_best"						"1"
 	"weapon1_cycle"						"1"
-	"weapon1_flashlight"					"1"
+	"weapon1_flashlight"					"0" // default 1
 
-	"def_weapon2"						"weapon_shotgun"
+	"def_weapon2"						"weapon_machinegun" // default weapon_shotgun
 	"weapon2_best"						"1"
 	"weapon2_cycle"						"1"
-	"weapon2_flashlight"					"0"
+	"weapon2_flashlight"					"1"
 
 	"def_weapon3"						"weapon_hyperblaster"
 	"weapon3_best"						"1"
@@ -692,14 +692,14 @@ entityDef player_marine
 	// default weapons
 	// seperate multiple weapons with commas (no spaces).
 	// NOTE: default ammo must be specified explicitly.
-	"weapon"						"weapon_blaster"
-	"current_weapon"					"0"
+	"weapon"						"weapon_blaster,weapon_gauntlet,weapon_machinegun,weapon_hyperblaster,weapon_grenadelauncher,weapon_nailgun,weapon_rocketlauncher,weapon_railgun,weapon_lightninggun,weapon_dmg,weapon_napalmgun" // default weapon_blaster
+	"current_weapon"					"1" // default 0
 
-	"pm_jumpheight"						"48"
+	"pm_jumpheight"						"96" // default 48
 	"pm_stepsize"						"16"
 	"pm_speed"						"160"  	//DOOM speed was 140
 	"pm_walkspeed"						"320" // default 80
-	"pm_crouchspeed"					"80"
+	"pm_crouchspeed"					"160" // defualt 80
 	"pm_noclipspeed"					"270"	
 	"pm_minviewpitch"					"-89"	// looking up
 //	"pm_maxviewpitch"					"53"	// looking down
@@ -723,34 +723,36 @@ entityDef player_marine
 	// stats
 	"health"						"100"
 	"maxhealth"						"100"
-	"armor"							"0"
-	"maxarmor"						"100"
+	"armor"							"999" // default 0
+	"maxarmor"						"999" // default 100
 	"minRestoreHealth0"					"20"		// Minimum health when loading a game for skill level 0
 	"minRestoreHealth1"					"10"		// Minimum health when loading a game for skill level 1
 
 	// ammo
-	"ammo_railgun"						"0"
-	"ammo_machinegun"					"0"
-	"ammo_nailgun"						"0"
+	"ammo_railgun"						"999" // default 0
+	"ammo_machinegun"					"999" // default 0
+	"ammo_nailgun"						"999" // default 0
 	"ammo_blaster"						"-1"
-	"ammo_shotgun"						"0"
-	"ammo_hyperblaster"					"0"
-	"ammo_rocketlauncher"					"0"
-	"ammo_grenadelauncher"					"0"
-	"ammo_lightninggun"					"0"
+	// "ammo_shotgun"						"0"
+	"ammo_hyperblaster"					"999" // default 0
+	"ammo_rocketlauncher"					"999" // default 0
+	"ammo_grenadelauncher"					"999" // default 0
+	"ammo_lightninggun"					"999" // default 0
+	"ammo_dmg"					"999" // default unlisted
+	"ammo_napalmgun"					"999" // default unlisted
 	"ammo_none"						"-1"
 
 	"max_ammo_blaster"					"-1"
-	"max_ammo_railgun"					"50"
-	"max_ammo_machinegun"					"300"
-	"max_ammo_nailgun"					"300"
+	"max_ammo_railgun"					"999" // default 50
+	"max_ammo_machinegun"					"999" // default 300
+	"max_ammo_nailgun"					"999" // default 300
 	"max_ammo_shotgun"					"50"
-	"max_ammo_hyperblaster"					"400"
-	"max_ammo_napalmgun"					"40"
-	"max_ammo_rocketlauncher"				"40"
-	"max_ammo_grenadelauncher"				"50"
-	"max_ammo_lightninggun"					"400"
-	"max_ammo_dmg"						"25"
+	"max_ammo_hyperblaster"					"999" // default 400
+	"max_ammo_napalmgun"					"999" // default 40
+	"max_ammo_rocketlauncher"				"999" // default 40
+	"max_ammo_grenadelauncher"				"999" // default 50
+	"max_ammo_lightninggun"					"999" // default 400
+	"max_ammo_dmg"						"999" // default 25
 	"max_ammo_none"						"-1"
 
 	// inventory items
