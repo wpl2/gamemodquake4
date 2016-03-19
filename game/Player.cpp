@@ -2089,6 +2089,7 @@ void idPlayer::Save( idSaveGame *savefile ) const {
 	playerView.Save( savefile );
 
 	savefile->WriteBool( noclip );
+	savefile->WriteBool( crouchhidden );
 	savefile->WriteBool( godmode );
 	savefile->WriteInt ( godmodeDamage );	
 	savefile->WriteBool( undying );
@@ -2351,6 +2352,7 @@ void idPlayer::Restore( idRestoreGame *savefile ) {
 	playerView.Restore( savefile );
 
 	savefile->ReadBool( noclip );
+	savefile->ReadBool( crouchhidden );
 	savefile->ReadBool( godmode );
 	savefile->ReadInt ( godmodeDamage );	
 	savefile->ReadBool( undying );

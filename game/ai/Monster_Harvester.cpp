@@ -606,7 +606,7 @@ rvMonsterHarvester::CheckActions
 ================
 */
 bool rvMonsterHarvester::CheckActions ( void ) {
-	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
+	if ( idAI::ReactionTo( enemy.ent.GetEntity() ) == 0) {
 		return false;
 	}
 

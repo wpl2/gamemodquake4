@@ -189,7 +189,7 @@ rvMonsterStroggFlyer::CheckActions
 ================
 */
 bool rvMonsterStroggFlyer::CheckActions ( void ) {
-	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
+	if ( idAI::ReactionTo( enemy.ent.GetEntity() ) == 0) {
 		return false;
 	}
 	if ( PerformAction ( &actionBombAttack, (checkAction_t)&idAI::CheckAction_RangedAttack, &actionTimerRangedAttack )    ||

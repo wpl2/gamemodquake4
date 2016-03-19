@@ -228,7 +228,7 @@ rvMonsterFatty::CheckActions
 ================
 */
 bool rvMonsterFatty::CheckActions ( void ) {
-	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
+	if ( idAI::ReactionTo( enemy.ent.GetEntity() ) == 0) {
 		return false;
 	}
 	if ( PerformAction ( &actionWhipAttack, (checkAction_t)&rvMonsterFatty::CheckAction_WhipAttack, NULL ) ) {

@@ -143,7 +143,7 @@ stays hidden behind his shield if getting shot at.
 ================
 */
 bool rvMonsterGladiator::CheckActions ( void ) {
-	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
+	if ( idAI::ReactionTo( enemy.ent.GetEntity() ) == 0) {
 		return false;
 	}
 	// If not moving, try turning in place
