@@ -9646,7 +9646,11 @@ void idPlayer::Think( void ) {
 		if ( gameLocal.time > nextHealthPulse ) {
 			if ( health < inventory.maxHealth ) {
 				nextHealthPulse = gameLocal.time + HEALTH_PULSE;
-				health += 5;
+				if ( health + 5 > inventory.maxHealth ) {
+					health = inventory.maxHealth;
+				} else {
+					health += 5;
+				}
 			}
 		}
 	} else {
