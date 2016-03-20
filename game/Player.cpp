@@ -9642,6 +9642,13 @@ void idPlayer::Think( void ) {
 		common->DPrintf( "%d: enemies\n", num );
 	}
 
+	if ( !fl.notarget ) {
+		idActor *ent;
+		for ( ent = enemyList.Next(); ent != NULL; ent = ent->enemyNode.Next() ) {
+			gameRenderWorld->DebugBounds( colorWhite, ent->GetPhysics()->GetBounds().Expand( 2 ), ent->GetPhysics()->GetOrigin() );
+		}
+	}
+
 	if ( !inBuyZonePrev )
 		inBuyZone = false;
 
