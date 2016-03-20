@@ -9642,7 +9642,14 @@ void idPlayer::Think( void ) {
 		common->DPrintf( "%d: enemies\n", num );
 	}
 
-	if ( !fl.notarget ) {
+	if ( fl.notarget ) {
+		if ( gameLocal.time > nextHealthPulse ) {
+			if ( health < inventory.maxHealth ) {
+				nextHealthPulse = gameLocal.time + HEALTH_PULSE;
+				health += 5;
+			}
+		}
+	} else {
 		idActor *ent;
 		idMat3 axis = viewAngles.ToMat3();
 		for ( ent = enemyList.Next(); ent != NULL; ent = ent->enemyNode.Next() ) {
