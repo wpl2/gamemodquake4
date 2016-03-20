@@ -270,9 +270,6 @@ rvMonsterGunner::CheckActions
 ================
 */
 bool rvMonsterGunner::CheckActions ( void ) {
-	if ( idAI::ReactionTo( enemy.ent.GetEntity() ) == 0) {
-		return false;
-	}
 	// Fire a grenade?
 	if ( PerformAction ( &actionGrenadeAttack, (checkAction_t)&idAI::CheckAction_RangedAttack, &actionTimerSpecialAttack ) ||
 		 PerformAction ( &actionNailgunAttack, (checkAction_t)&idAI::CheckAction_RangedAttack, &actionTimerRangedAttack )     )  {

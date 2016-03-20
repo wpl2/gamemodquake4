@@ -583,10 +583,6 @@ rvMonsterBossMakron::CheckActions
 ================
 */
 bool rvMonsterBossMakron::CheckActions ( void ) {
-	if ( idAI::ReactionTo( enemy.ent.GetEntity() ) == 0) {
-		return false;
-	}
-
 	if( spawnArgs.GetFloat("furniture", "0"))	{
 		return true;
 	}

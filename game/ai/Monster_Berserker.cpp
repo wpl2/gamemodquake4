@@ -189,9 +189,6 @@ rvMonsterBerserker::CheckActions
 ================
 */
 bool rvMonsterBerserker::CheckActions ( void ) {
-	if ( !idAI::ReactionTo( enemy.ent.GetEntity() ) ) {
-		return false;
-	}
 	// Pop-up attack is a forward moving melee attack that throws the enemy up in the air
 	if ( PerformAction ( &actionPopupAttack, (checkAction_t)&idAI::CheckAction_LeapAttack, &actionTimerSpecialAttack ) ) {
 		return true;

@@ -862,9 +862,6 @@ rvMonsterStroggHover::Spawn
 ================
 */
 bool rvMonsterStroggHover::CheckActions ( void ) {
-	if ( idAI::ReactionTo( enemy.ent.GetEntity() ) == 0) {
-		return false;
-	}
 	if ( PerformAction ( &actionCircleStrafe,  (checkAction_t)&rvMonsterStroggHover::CheckAction_CircleStrafe ) ) {
 		return true;
 	}

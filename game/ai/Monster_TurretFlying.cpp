@@ -83,9 +83,6 @@ rvMonsterTurretFlying::CheckActions
 ================
 */
 bool rvMonsterTurretFlying::CheckActions ( void ) {
-	if ( idAI::ReactionTo( enemy.ent.GetEntity() ) == 0) {
-		return false;
-	}
 	// Attacks
 	if ( PerformAction ( &actionBlasterAttack, (checkAction_t)&idAI::CheckAction_RangedAttack, &actionTimerRangedAttack ) ) {
 		return true;

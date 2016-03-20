@@ -606,9 +606,6 @@ rvMonsterHarvester::CheckActions
 ================
 */
 bool rvMonsterHarvester::CheckActions ( void ) {
-	if ( idAI::ReactionTo( enemy.ent.GetEntity() ) == 0) {
-		return false;
-	}
 
 	// such a dirty hack... I'm not sure what is actually wrong, but somehow nextTurnTime is getting to be a rediculously high number.
 	// I have some more significant bugs that really need to be solved, so for now, this will have to do.

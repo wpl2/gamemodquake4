@@ -41,6 +41,7 @@ const int PMF_JUMP_HELD			= 16;		// set when jump button is held down
 const int PMF_TIME_LAND			= 32;		// movementTime is time before rejump
 const int PMF_TIME_KNOCKBACK	= 64;		// movementTime is an air-accelerate only time
 const int PMF_TIME_WATERJUMP	= 128;		// movementTime is waterjump
+const int PMF_DOUBLE_JUMPED		= 256;		// set when player has double jumped
 const int PMF_ALL_TIMES			= (PMF_TIME_WATERJUMP|PMF_TIME_LAND|PMF_TIME_KNOCKBACK);
 
 int c_pmove = 0;
@@ -1112,7 +1113,7 @@ void idPhysics_Player::CheckGround( bool checkStuck ) {
 	// if the player didn't have ground contacts the previous frame
 	if ( !hadGroundContacts ) {
 		// don't do landing time if we were just going down a slope
-		if ( (current.velocity * -gravityNormal) < -200.0f ) {
+		if ( (current.velocity * -gravityNormal) < -200.0f && (current.movementFlags & PMF_DOUBLE_JUMPED) ) {
 			// don't allow another jump for a little while
 			current.movementFlags |= PMF_TIME_LAND;
 			current.movementTime = 250;
@@ -1291,7 +1292,13 @@ bool idPhysics_Player::CheckJump( void ) {
 
 	groundPlane = false;		// jumping away
 	walking = false;
-	current.movementFlags |= PMF_JUMP_HELD | PMF_JUMPED;
+	if ( current.movementFlags & PMF_JUMPED ) {
+		current.movementFlags |= PMF_JUMP_HELD | PMF_DOUBLE_JUMPED;
+		current.movementFlags &= ~PMF_JUMPED;
+	} else {
+		current.movementFlags |= PMF_JUMP_HELD | PMF_JUMPED;
+		current.movementFlags &= ~PMF_DOUBLE_JUMPED;
+	}
 
 	addVelocity = 2.0f * maxJumpHeight * -gravityVector;
 	addVelocity *= idMath::Sqrt( addVelocity.Normalize() );
@@ -1463,7 +1470,7 @@ void idPhysics_Player::MovePlayer( int msec ) {
 	playerSpeed = walkSpeed;
 
 	// remove jumped and stepped up flag
-	current.movementFlags &= ~(PMF_JUMPED|PMF_STEPPED_UP|PMF_STEPPED_DOWN);
+	current.movementFlags &= ~(PMF_JUMPED|PMF_DOUBLE_JUMPED|PMF_STEPPED_UP|PMF_STEPPED_DOWN);
 	current.stepUp = 0.0f;
 
 	if ( command.upmove < 10 ) {

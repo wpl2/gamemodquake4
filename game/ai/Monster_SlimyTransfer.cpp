@@ -99,9 +99,6 @@ rvMonsterSlimyTransfer::CheckActions
 ================
 */
 bool rvMonsterSlimyTransfer::CheckActions ( void ) {
-	if ( idAI::ReactionTo( enemy.ent.GetEntity() ) == 0) {
-		return false;
-	}
 	if ( PerformAction ( &actionVomitAttack, (checkAction_t)&idAI::CheckAction_RangedAttack, &actionTimerRangedAttack ) ) {
 		return true;
 	}

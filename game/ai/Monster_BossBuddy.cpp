@@ -444,9 +444,6 @@ bool rvMonsterBossBuddy::Pain( idEntity *inflictor, idEntity *attacker, int dama
 //------------------------------------------------------------
 bool rvMonsterBossBuddy::CheckActions( void ) 
 {
-	if ( idAI::ReactionTo( enemy.ent.GetEntity() ) == 0) {
-		return false;
-	}
 	// If not moving, try turning in place
 /*	if ( !move.fl.moving && gameLocal.time > combat.investigateTime ) 
 	{

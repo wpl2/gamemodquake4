@@ -1080,7 +1080,6 @@ idPlayer::idPlayer() {
 
 	doInitWeapon			= false;
 	noclip					= false;
-	crouchhidden			= false;
 	godmode					= false;
 	undying					= g_forceUndying.GetBool() ? !gameLocal.isMultiplayer : false;
 
@@ -1497,7 +1496,6 @@ void idPlayer::Init( void ) {
 	const char			*value;
 	
 	noclip					= false;
-	crouchhidden			= false;
 	godmode					= false;
 	godmodeDamage			= 0;
 	undying					= g_forceUndying.GetBool() ? !gameLocal.isMultiplayer : false;
@@ -2089,7 +2087,6 @@ void idPlayer::Save( idSaveGame *savefile ) const {
 	playerView.Save( savefile );
 
 	savefile->WriteBool( noclip );
-	savefile->WriteBool( crouchhidden );
 	savefile->WriteBool( godmode );
 	savefile->WriteInt ( godmodeDamage );	
 	savefile->WriteBool( undying );
@@ -2352,7 +2349,6 @@ void idPlayer::Restore( idRestoreGame *savefile ) {
 	playerView.Restore( savefile );
 
 	savefile->ReadBool( noclip );
-	savefile->ReadBool( crouchhidden );
 	savefile->ReadBool( godmode );
 	savefile->ReadInt ( godmodeDamage );	
 	savefile->ReadBool( undying );
@@ -9023,14 +9019,14 @@ void idPlayer::Move( void ) {
 		newEyeOffset = pm_crouchviewheight.GetFloat();
 		powerUpOverlay = invisibilityOverlay; // invisible when crouching
 		powerUpSkin = declManager->FindSkin( spawnArgs.GetString( "skin_invisibility" ), false );
-		crouchhidden = true;
+		fl.notarget = true;
 	} else if ( IsInVehicle ( ) ) {
 		newEyeOffset = 0.0f;
 	} else {
 		newEyeOffset = pm_normalviewheight.GetFloat();
 		powerUpOverlay = NULL; // become visible when standing
 		powerUpSkin = NULL;
-		crouchhidden = false;
+		fl.notarget = false;
 	}
 
 	if ( EyeHeight() != newEyeOffset ) {
