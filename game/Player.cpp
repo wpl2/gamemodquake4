@@ -9644,8 +9644,10 @@ void idPlayer::Think( void ) {
 
 	if ( !fl.notarget ) {
 		idActor *ent;
+		idMat3 axis = viewAngles.ToMat3();
 		for ( ent = enemyList.Next(); ent != NULL; ent = ent->enemyNode.Next() ) {
 			gameRenderWorld->DebugBounds( colorWhite, ent->GetPhysics()->GetBounds().Expand( 2 ), ent->GetPhysics()->GetOrigin() );
+			gameRenderWorld->DrawText( va( "%d", ent->health ), ent->GetPhysics()->GetAbsBounds().GetCenter(), 0.1f, colorWhite, axis, 1 );
 		}
 	}
 
