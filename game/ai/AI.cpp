@@ -635,6 +635,9 @@ void idAI::Spawn( void ) {
 	aifl.killerGuard			= spawnArgs.GetBool ( "killer_guard", "0" );
 	aifl.scriptedEndWithIdle	= true;
 
+	aifl.poisoned = false;
+	nextPoisonPulse = 0;
+
 	// Setup Move Data
 	move.Spawn( spawnArgs );
 
@@ -1136,6 +1139,15 @@ idAI::Think
 =====================
 */
 void idAI::Think( void ) {
+
+	if ( aifl.poisoned && ( gameLocal.time > nextPoisonPulse ) ) {
+		if (health - 5 <= 0) {
+			health = 1;
+		} else {
+			health -= 5;
+		}
+		nextPoisonPulse = gameLocal.time + 1000;
+	}
 
 	// if we are completely closed off from the player, don't do anything at all
 	if ( CheckDormant() ) {

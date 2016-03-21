@@ -570,7 +570,10 @@ public:
 		bool		tetherMover				:1;			// Currently using a dynamic tether to a mover
 		bool		meleeSuperhero			:1;
 		bool		killerGuard				:1;			// Do 100 points of damage with each hit
+		bool		poisoned				:1;
 	} aifl;
+
+	int nextPoisonPulse;
 	
 	//
 	// ai/ai.cpp

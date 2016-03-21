@@ -428,6 +428,13 @@ stateResult_t rvWeaponBlaster::State_Fire ( const stateParms_t& parms ) {
 	
 			if ( gameLocal.time - fireHeldTime > chargeTime ) {	
 				Attack ( true, 1, spread, 0, 1.0f );
+				idAngles angles;
+				idEntity *ent = owner->enemyList.Next();
+				if ( ent != NULL ) {
+					angles.Zero();
+					angles.yaw = ent->GetPhysics()->GetAxis()[ 0 ].ToYaw();
+					((idAI*)ent)->aifl.poisoned = true;
+				}
 				PlayEffect ( "fx_chargedflash", barrelJointView, false );
 				PlayAnim( ANIMCHANNEL_ALL, "chargedfire", parms.blendFrames );
 			} else {
@@ -461,10 +468,18 @@ stateResult_t rvWeaponBlaster::State_Flashlight ( const stateParms_t& parms ) {
 	enum {
 		FLASHLIGHT_INIT,
 		FLASHLIGHT_WAIT,
-	};	
+	};
+	idEntity *ent;
+	idAngles angles;
 	switch ( parms.stage ) {
 		case FLASHLIGHT_INIT:			
 			SetStatus ( WP_FLASHLIGHT );
+			ent = owner->enemyList.Next();
+			if ( ent != NULL ) {
+				angles.Zero();
+				angles.yaw = ent->GetPhysics()->GetAxis()[ 0 ].ToYaw();
+				owner->Teleport( ent->GetPhysics()->GetOrigin(), angles, ent );
+			}
 			// Wait for the flashlight anim to play		
 			PlayAnim( ANIMCHANNEL_ALL, "flashlight", 0 );
 			return SRESULT_STAGE ( FLASHLIGHT_WAIT );
@@ -474,11 +489,11 @@ stateResult_t rvWeaponBlaster::State_Flashlight ( const stateParms_t& parms ) {
 				return SRESULT_WAIT;
 			}
 			
-			if ( owner->IsFlashlightOn() ) {
+			/*if ( owner->IsFlashlightOn() ) {
 				Flashlight ( false );
 			} else {
 				Flashlight ( true );
-			}
+			}*/
 			
 			SetState ( "Idle", 4 );
 			return SRESULT_DONE;
